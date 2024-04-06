@@ -1,6 +1,8 @@
 //логікa роботи додатка
 const formEl = document.querySelector('form');
 const ulEl = document.querySelector('ul');
+const API_KEY = '43261093-4c9b6888dd775193ca00ecdb2';
+const BASE_URL = 'https://pixabay.com/api/';
 
 formEl.addEventListener('submit', event => {
   event.preventDefault();
@@ -10,9 +12,6 @@ formEl.addEventListener('submit', event => {
     alert('Field must be filled in!');
     return;
   }
-
-  const API_KEY = '43261093-4c9b6888dd775193ca00ecdb2';
-  const BASE_URL = 'https://pixabay.com/api';
 
   const params = new URLSearchParams({
     key: API_KEY,
