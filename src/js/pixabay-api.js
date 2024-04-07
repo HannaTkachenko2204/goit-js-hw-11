@@ -10,7 +10,8 @@ export function imageSearch(inputEl) {
     safesearch: true,
   });
 
-  return fetch(`${BASE_URL}?${params}`).then(response => {
+  return fetch(`${BASE_URL}?${params}`)
+  .then(response => {
     if (!response.ok) {
       throw new Error(response.status);
     }

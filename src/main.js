@@ -1,3 +1,7 @@
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { imageSearch } from './js/pixabay-api';
 import { createMarkup } from './js/render-functions';
 
@@ -11,7 +15,14 @@ function handleSubmit(event) {
   const form = event.target;
   const inputEl = form.elements.imgname.value;
   if (inputEl === '') {
-    alert('Field must be filled in!');
+    iziToast.show({
+      message: "Field must be filled in!",
+      position: 'topRight',
+      backgroundColor: 'red',
+      messageColor: '#FFFFFF',
+      transitionIn: 'fadeln',
+      timeout: 4000,
+    });
     return;
   }
 
@@ -19,13 +30,19 @@ function handleSubmit(event) {
     .then(data => {
       const tagsArr = data.hits.flatMap(hit => hit.tags.split(','));
       if (!tagsArr.includes(inputEl)) {
-        alert(
-          'Sorry, there are no images matching your search query. Please try again!'
-        );
+        iziToast.show({
+          message: "Sorry, there are no images matching your search query. Please try again!",
+          position: 'topRight',
+          backgroundColor: 'red',
+          messageColor: '#FFFFFF',
+          transitionIn: 'fadeln',
+          timeout: 4000,
+        });
         return;
       }
 
       ulEl.innerHTML = createMarkup(data.hits);
+      new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
     })
     .catch(error => alert(error))
     .finally(() => form.reset());
