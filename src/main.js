@@ -32,10 +32,8 @@ function handleSubmit(event) {
 
   imageSearch(inputEl)
     .then(data => {
-      console.log(data.hits.length);
+      //console.log(data.hits.length);
       if (data.hits.length === 0) {
-        // const tagsArr = data.hits.flatMap(hit => hit.tags.split(','));
-        // if (!tagsArr.includes(inputEl)) {
         iziToast.show({
           message:
             'Sorry, there are no images matching your search query. Please try again!',
@@ -52,7 +50,7 @@ function handleSubmit(event) {
       loaderEl.style.display = 'none';
 
       ulEl.innerHTML = createMarkup(data.hits);
-      console.log(ulEl);
+      //console.log(ulEl);
       const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionDelay: 250,
