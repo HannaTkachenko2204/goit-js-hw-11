@@ -28,7 +28,7 @@ function handleSubmit(event) {
     return;
   }
 
-  loaderEl.style.display = '';
+  loaderEl.style.display = 'block';
 
   imageSearch(inputEl)
     .then(data => {
@@ -44,6 +44,7 @@ function handleSubmit(event) {
           timeout: 4000,
         });
         loaderEl.style.display = 'none';
+        ulEl.innerHTML = '';
         return;
       }
 
